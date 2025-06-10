@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Inicio de sesion</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
+  <style>
+    
+    header {
+      padding: 30px 20px;
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+      background-color: rgba(255, 255, 255, 0.35);
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      margin-top: 40px;
+      color: #1e3a5f;
+    }
+
+    header h1 {
+      margin-bottom: 15px;
+    }
+
+    header p {
+      font-size: 18px;
+      line-height: 1.5;
+    }
+
+    /* FORMULARIO LOGIN */
+    .formulario {
+      background-color: rgba(255, 255, 255, 0.85);
+      padding: 30px;
+      border-radius: 16px;
+      max-width: 320px;
+      margin: 40px auto 60px auto;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      text-align: left;
+      color: #1e3a5f;
+      flex-shrink: 0;
+    }
+
+    .formulario h1 {
+      text-align: center;
+      margin-bottom: 24px;
+      color: #1e3a5f;
+    }
+
+    .form-group {
+      position: relative;
+      margin-bottom: 30px;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 10px 0;
+      border: none;
+      border-bottom: 2px solid #ccc;
+      background: transparent;
+      font-size: 16px;
+      outline: none;
+      color: #1e3a5f;
+    }
+
+    .form-group label {
+      position: absolute;
+      top: 10px;
+      left: 0;
+      color: #999;
+      pointer-events: none;
+      transition: 0.2s ease all;
+    }
+
+    .form-group input:focus ~ label,
+    .form-group input:not(:placeholder-shown) ~ label {
+      top: -14px;
+      font-size: 13px;
+      color: #3f51b5;
+    }
+
+    .form-group input:focus {
+      border-bottom: 2px solid #3f51b5;
+    }
+
+    .recordar {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .recordar a {
+      color: #3f51b5;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    input[type="submit"] {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 20px;
+      background-color: #ccc;
+      color: #333;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #bbb;
+    }
+
+    .registrarse {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .registrarse a {
+      color: #3f51b5;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Iniciar sesión</h1>
+    <p>
+      Inicia sesion para continuar.
+    </p>
+  </header>
+
+  <div class="formulario">
+    <h1>Inicio de sesión</h1>
+    <form id="formLogin">
+      <div class="form-group">
+        <input type="text" id="usuario" placeholder=" " required />
+        <label for="usuario">Correo electrónico</label>
+      </div>
+      <div class="form-group">
+        <input type="password" id="password" placeholder=" " required />
+        <label for="password">Contraseña</label>
+      </div>
+
+      <div class="recordar">
+        <a href="recuperar.html">¿Olvidó su contraseña?</a>
+      </div>
+
+      <input type="submit" value="Iniciar sesión" />
+
+      <div class="registrarse">
+        <a href="registro.html">Registrarse</a>
+      </div>
+    </form>
+  </div>
+
+
+  <script>
+    // Login
+    const formLogin = document.getElementById('formLogin');
+    formLogin.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const emailIngresado = document.getElementById('usuario').value.trim();
+      const passwordIngresado = document.getElementById('password').value;
+
+      const usuarioGuardado = JSON.parse(localStorage.getItem('usuarioRegistrado'));
+
+      if (usuarioGuardado && emailIngresado === usuarioGuardado.email && passwordIngresado === usuarioGuardado.password) {
+        alert('Inicio de sesión exitoso');
+        window.location.href = 'bienvenida.html'; // Cambiar si querés otra página
+      } else {
+        alert('Correo o contraseña incorrectos');
+      }
+</body>
+</html>
+
